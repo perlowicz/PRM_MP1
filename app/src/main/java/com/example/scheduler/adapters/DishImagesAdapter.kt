@@ -19,10 +19,16 @@ class DishImageViewHolder(val binding: DishImageBinding)
 
 class DishImagesAdapter : RecyclerView.Adapter<DishImageViewHolder>() {
 
-    private val images = listOf(R.drawable.pierogi, R.drawable.pizza)
+    private val images = listOf(
+        R.drawable.pierogi,
+        R.drawable.pizza,
+        R.drawable.pumpkin,
+        R.drawable.rice,
+        R.drawable.rosol,
+    )
     private var selectedPosition: Int = 0
     val selectedIdRes: Int
-        get() = images[selectedPosition]
+    get() = images[selectedPosition]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishImageViewHolder {
         val binding = DishImageBinding.inflate(

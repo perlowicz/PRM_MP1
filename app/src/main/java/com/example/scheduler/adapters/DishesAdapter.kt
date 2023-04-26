@@ -1,4 +1,4 @@
-package com.example.scheduler
+package com.example.scheduler.adapters
 
 import android.os.Handler
 import android.os.Looper
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.HandlerCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.scheduler.DishCallback
+import com.example.scheduler.Navigable
+import com.example.scheduler.databinding.FragmentEditBinding
 import com.example.scheduler.databinding.ListItemBinding
 import com.example.scheduler.model.Dish
 
@@ -29,7 +32,18 @@ class DishesAdapter : RecyclerView.Adapter<DishViewHolder>() {
             parent,
             false
         )
-        return DishViewHolder(binding)
+        return DishViewHolder(binding).also { vh ->
+            binding.root.setOnClickListener {
+                //TODO
+//                Dish(
+//                    binding.name.text as String,
+//                    binding.ingredients.text.split("\n"),
+//                    binding.image.
+//                )
+//                vh.bind()
+                println(binding.name.text)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
@@ -50,7 +64,7 @@ class DishesAdapter : RecyclerView.Adapter<DishViewHolder>() {
 
     fun sort() {
         val notSorted = data.toList()
-        data.sortBy { it.name }
+        data.sortBy { it.name.length }
         val callback = DishCallback(notSorted, data)
         val result = DiffUtil.calculateDiff(callback)
         handler.post {
